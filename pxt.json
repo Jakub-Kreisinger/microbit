@@ -1,5 +1,5 @@
 {
-    "name": "sigma",
+    "name": "pxt.dice",
     "description": "",
     "dependencies": {
         "core": "*",
