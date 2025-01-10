@@ -1,17 +1,32 @@
-
-let buttonWasPressed: number = 0; // 0 bude nestisknuto a 1 bude stisknuto
-
-while (true){
-
+let value = 0
+let diceSides = 6
+let lowestDice = 2
+let highestDice = 99
+let randNumber:number
+let locked = false
+whaleysans.showNumber(diceSides)
+while (true) {
     if (input.buttonIsPressed(Button.A)) {
-     let buttonWasPressed = 1;
-     
- }
-else{
-    buttonWasPressed = 0
+        if (diceSides > lowestDice) {
+            diceSides += 0 - 1
+        }
+        basic.showNumber(diceSides)
+    }
+    if (input.buttonIsPressed(Button.B)) {
+        if (diceSides < highestDice) {
+            diceSides += 1
+        }
+        basic.showNumber(diceSides)
+    }
+    if (input.isGesture(Gesture.Shake) && !(locked)) {
+       let value = randint(lowestDice, diceSides)
+        basic.showNumber(value)
+        locked = true
+    }
+    if (input.logoIsPressed()) {
+        locked = false
+        music.play(music.tonePlayable(330, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+        music.setVolume(100)
+        basic.showNumber(diceSides)
+    }
 }
-buttonWasPressed = input.buttonIsPressed(Button.A) ? 1 : 0
-console.logValue("tlacitko", buttonWasPressed)
- basic.pause(50); // 50ms = 20x za sekundu
-}
-basic.showIcon(IconNames.Heart)
